@@ -39,15 +39,12 @@
 
 <!-- ===== TELA INICIAL ===== -->
 <div class="screen" id="screen-home">
-  <div class="home-hero">
+  <div class="home-hero" style="position:relative;">
+    <button class="logout-btn" onclick="fazerLogout()">Sair</button>
     <img src="assets/logo.png" alt="BRAG TRUCK">
     <h1>Brag Truck</h1>
     <p>J. A. dos Reis e Cia. Ltda</p>
   </div>
-  <p class="footer-note" style="text-align:center;">
-    <a href="privacidade.html">Política de Privacidade</a>
-    · <a href="#" onclick="fazerLogout();return false;">Sair</a>
-  </p>
   <div class="home-menu">
     <button class="home-btn primary" onclick="showScreen('screen-os')">
       <span class="icon">📝</span>
@@ -66,6 +63,7 @@
       <span class="txt"><strong>Veículos Cadastrados</strong><span>Consultar veículos salvos</span></span>
     </button>
   </div>
+  <p class="footer-note" style="text-align:center;"><a href="privacidade.html">Política de Privacidade</a></p>
 </div>
 
 <!-- ===== TELA: HISTÓRICO DE SERVIÇOS ===== -->

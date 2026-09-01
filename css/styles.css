@@ -214,6 +214,19 @@
     text-align:center;
     padding:40px 20px 32px;
   }
+  .logout-btn{
+    position:absolute;
+    top:14px;
+    right:14px;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    padding:7px 14px;
+    font-size:0.78rem;
+    font-weight:700;
+    cursor:pointer;
+  }
   .home-hero img{
     width:110px;
     height:110px;
