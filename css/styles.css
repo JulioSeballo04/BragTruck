@@ -297,6 +297,17 @@
     font-size:0.8rem;
     cursor:pointer;
   }
+  .back-link{
+    display:inline-block;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.3);
+    color:#fff;
+    border-radius:8px;
+    padding:6px 10px;
+    font-size:0.8rem;
+    text-decoration:none;
+    margin-bottom:10px;
+  }
   .topbar h2{
     margin:0;
     font-size:1rem;
