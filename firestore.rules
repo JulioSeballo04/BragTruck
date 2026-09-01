@@ -1,10 +1,9 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // O app não tem autenticação de usuário, então liberamos leitura/escrita geral.
-    // Sem essa regra o Firestore bloqueia tudo por padrão e o app não salva nada.
+    // Só o usuário autenticado (login único do dono da Brag Truck) pode ler/escrever.
     match /{document=**} {
-      allow read, write: if true;
+      allow read, write: if request.auth != null && request.auth.token.email == 'joao.reis@bragtruck.local';
     }
   }
 }
