@@ -55,6 +55,7 @@ function renderVeiculosList(){
       <div class="sub">Placa: ${vc.placa || '-'}${vc.cor ? ' · Cor: ' + vc.cor : ''}${vc.ano ? ' · Ano: ' + vc.ano : ''}</div>
       <div class="row">
         <button class="use-btn" onclick="usarVeiculo('${chaveVeiculo(vc)}')">Usar em nova OS</button>
+        <button class="delete-btn" onclick="excluirVeiculo('${chaveVeiculo(vc)}')">Excluir dados</button>
       </div>
     </div>
   `).join('');
@@ -64,4 +65,12 @@ function usarVeiculo(chave){
   const vc = veiculosCache.find(x => chaveVeiculo(x) === chave);
   showScreen('screen-os');
   if(vc) preencherCamposVeiculo(vc);
+}
+
+async function excluirVeiculo(chave){
+  const vc = veiculosCache.find(x => chaveVeiculo(x) === chave);
+  if(!vc) return;
+  if(!confirm(`Excluir os dados do veículo "${vc.veiculo} — ${vc.placa}"? Essa ação não pode ser desfeita.`)) return;
+  try{ await db.collection('veiculos').doc(chave).delete(); }
+  catch(e){ console.error('Erro ao excluir veículo no Firestore:', e); alert('Não foi possível excluir. Tente novamente.'); }
 }

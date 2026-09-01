@@ -66,6 +66,7 @@ function renderClientesList(){
       <div class="sub">${[c.endereco, c.numero, c.bairro, c.cidade && (c.cidade + (c.uf ? '/' + c.uf : ''))].filter(Boolean).join(', ')}</div>
       <div class="row">
         <button class="use-btn" onclick="usarCliente('${chaveCliente(c)}')">Usar em nova OS</button>
+        <button class="delete-btn" onclick="excluirCliente('${chaveCliente(c)}')">Excluir dados</button>
       </div>
     </div>
   `).join('');
@@ -75,4 +76,12 @@ function usarCliente(chave){
   const c = clientesCache.find(x => chaveCliente(x) === chave);
   showScreen('screen-os');
   if(c) preencherCamposCliente(c);
+}
+
+async function excluirCliente(chave){
+  const c = clientesCache.find(x => chaveCliente(x) === chave);
+  if(!c) return;
+  if(!confirm(`Excluir os dados de "${c.cliente}"? Essa ação não pode ser desfeita.`)) return;
+  try{ await db.collection('clientes').doc(chave).delete(); }
+  catch(e){ console.error('Erro ao excluir cliente no Firestore:', e); alert('Não foi possível excluir. Tente novamente.'); }
 }

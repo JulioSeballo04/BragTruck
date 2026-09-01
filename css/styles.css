@@ -318,6 +318,10 @@
     background:var(--teal-deep); color:#fff; border:none; border-radius:8px;
     padding:7px 12px; font-size:0.75rem; font-weight:700; cursor:pointer;
   }
+  .list-card .delete-btn{
+    background:#fff; color:var(--accent); border:1px solid var(--accent); border-radius:8px;
+    padding:7px 12px; font-size:0.75rem; font-weight:700; cursor:pointer;
+  }
   .empty-state{ text-align:center; color:#9a9a9a; font-size:0.85rem; padding:30px 10px; }
 
   .geo-list{

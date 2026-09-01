@@ -18,6 +18,7 @@ function renderHistorico(){
       <div class="sub">Data: ${o.data || '-'} · Total: R$ ${o.total || '0,00'}</div>
       <div class="row">
         <button class="use-btn" onclick="baixarPdfHistorico('${o.id}')">Baixar PDF novamente</button>
+        <button class="delete-btn" onclick="excluirOrdem('${o.id}')">Excluir dados</button>
       </div>
     </div>
   `).join('');
@@ -28,4 +29,12 @@ function baixarPdfHistorico(id){
   if(!o) return;
   const { doc, nomeArquivo } = montarPDF(o.dados);
   doc.save(nomeArquivo);
+}
+
+async function excluirOrdem(id){
+  const o = ordensCache.find(x => x.id === id);
+  if(!o) return;
+  if(!confirm(`Excluir a ordem de serviço de "${o.cliente || 'cliente'}"? Essa ação não pode ser desfeita.`)) return;
+  try{ await db.collection('ordens').doc(id).delete(); }
+  catch(e){ console.error('Erro ao excluir ordem no Firestore:', e); alert('Não foi possível excluir. Tente novamente.'); }
 }
